@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="assets/icons8-metro-50.png" type="image/x-icon"/>
+  <title>Registro de Ocorrência - Metrô SP</title>
+  <link rel="stylesheet" href="formulario.css" />
+</head>
+<body>
+  <h2>Ocorrência de Delito no Metrô</h2>
+
+  <form id="form-ocorrencia">
+    <label>Tipo de Ocorrência:
+      <select name="tipo_ocorrencia" required>
+        <option value="">Selecione</option>
+        <option value="furto">Furto (Art. 155 do Código Penal)</option>
+        <option value="assédio sexual">Assédio Sexual (Art. 216-A do Código Penal)</option>
+        <option value="lesão corporal">Lesão Corporal (Art. 129 do Código Penal)</option>
+        <option value="ato de vandalismo">Ato de Vandalismo (Art. 163 do Código Penal)</option>
+        <option value="conduta indecente ou atos obscenos">Conduta Indecente ou Atos Obscenos (Art. 233 do Código Penal)</option>
+        <option value="tráfico de drogas">Tráfico de Drogas (Art. 33 da Lei 11.343/2006 - Lei de Drogas)</option>
+        <option value="dano">Dano (Art. 163 do Código Penal)</option>
+        <option value="outra">Outra</option>
+      </select>
+    </label><br><br>
+
+    <label>Linha do Metrô:
+      <select name="linha_metro" required>
+        <option value="">Selecione</option>
+        <option value="Vermelha">Vermelha</option>
+        <option value="Azul">Azul</option>
+        <option value="Verde">Verde</option>
+        <option value="Amarela">Amarela</option>
+      </select>
+    </label><br><br>
+
+    <label>Estação:
+      <select name="estacao" required>
+        <option value="">Selecione</option>
+      </select>
+    </label><br><br>
+
+    <label>Gênero:
+      <select name="genero" required>
+        <option value="">Selecione</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Feminino">Feminino</option>
+        <option value="Outro">Outro</option>
+      </select>
+    </label><br><br>
+
+    <label>Data de Nascimento:
+      <input type="date" name="data_nascimento" required />
+    </label><br><br>
+
+    <label>Data do Ocorrido:
+      <input type="date" name="data_ocorrido" required />
+    </label><br><br>
+ 
+    <label>Hora do Ocorrido:
+      <input type="time" name="hora_ocorrido" required />
+    </label><br><br>
+
+    <label>Descrição do ocorrido:
+      <textarea name="descricao" rows="4" cols="40" placeholder="Descreva brevemente (opcional)"></textarea>
+    </label><br><br>
+
+    <label>
+      <input type="checkbox" name="consentimento" required />
+      Declaro que li e concordo com a Política de Privacidade e a LGPD.
+    </label><br><br>
+
+    <button type="submit">Enviar Ocorrência</button>
+    <button onclick="irParaApresentacao()">Voltar</button>
+  </form>
+
+  <p id="mensagem"></p>
+
+<script>
+  function irParaApresentacao() {
+    window.location.href = "apresentacao.html";
+  }
+</script>
+
+<script>
+const estacoesPorLinha = {
+  Vermelha: 
+  ["Palmeiras–Barra Funda",
+  "Marechal Deodoro",
+  "Santa Cecília",
+  "República",
+  "Anhangabaú",
+  "Sé",
+  "Pedro II",
+  "Brás",
+  "Bresser–Mooca",
+  "Belém",
+  "Tatuapé",
+  "Carrão",
+  "Penha",
+  "Vila Matilde",
+  "Guilhermina–Esperança",
+  "Patriarca–Vila Ré",
+  "Artur Alvim",
+  "Corinthians–Itaquera"],
+
+  Azul: 
+  ["Tucuruvi",
+  "Parada Inglesa",
+  "Jardim São Paulo – Ayrton Senna",
+  "Santana",
+  "Carandiru",
+  "Portuguesa–Tietê",
+  "Armênia",
+  "Tiradentes",
+  "Luz",
+  "São Bento",
+  "Sé",
+  "Liberdade",
+  "São Joaquim",
+  "Vergueiro",
+  "Paraíso",
+  "Ana Rosa",
+  "Vila Mariana",
+  "Santa Cruz",
+  "Praça da Árvore",
+  "Saúde",
+  "São Judas",
+  "Conceição",
+  "Jabaquara"],
+
+  Amarela: 
+  ["Luz",
+  "República",
+  "Higienópolis–Mackenzie",
+  "Paulista",
+  "Oscar Freire",
+  "Fradique Coutinho",
+  "Faria Lima",
+  "Pinheiros",
+  "Butantã",
+  "São Paulo–Morumbi",
+  "Vila Sônia"],
+
+  Verde: 
+  ["Vila Madalena",
+  "Sumaré",
+  "Clínicas",
+  "Consolação",
+  "Trianon–Masp",
+  "Brigadeiro",
+  "Paraíso",
+  "Ana Rosa",
+  "Chácara Klabin",
+  "Santos–Imigrantes",
+  "Alto do Ipiranga",
+  "Sacomã",
+  "Tamanduateí",
+  "Vila Prudente"]
+};
+
+const linhaSelect = document.querySelector('select[name="linha_metro"]');
+const estacaoSelect = document.querySelector('select[name="estacao"]');
+
+linhaSelect.addEventListener("change", function () {
+  const estacoes = estacoesPorLinha[this.value] || [];
+  estacaoSelect.innerHTML = '<option value="">Selecione</option>';
+  estacoes.forEach(estacao => {
+    const option = document.createElement("option");
+    option.value = estacao;
+    option.textContent = estacao;
+    estacaoSelect.appendChild(option);
+  });
+});
+
+document.getElementById("form-ocorrencia").addEventListener("submit", async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = Object.fromEntries(new FormData(form).entries());
+  data.consentimento = form.consentimento.checked;
+
+  const resposta = await fetch("http://localhost:3000/enviar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  const mensagem = document.getElementById("mensagem");
+
+  if (resposta.ok) {
+    mensagem.textContent = "Ocorrência registrada com sucesso!";
+    mensagem.style.color = "green";
+    form.reset();
+    estacaoSelect.innerHTML = '<option value="">Selecione</option>';
+  } else {
+    mensagem.textContent = "Erro ao registrar ocorrência.";
+    mensagem.style.color = "red";
+  }
+});
+
+</script>
+</body>
+</html>
