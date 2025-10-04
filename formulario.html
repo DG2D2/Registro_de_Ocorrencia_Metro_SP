@@ -68,8 +68,17 @@
 
     <label>
       <input type="checkbox" name="consentimento" required />
-      Declaro que li e concordo com a Política de Privacidade e a LGPD.
+      Declaro que li e concordo com a <span class="link-politica grifado" onclick="mostrarOcultarPolitica()">Política de Privacidade</span> e a LGPD.
     </label><br><br>
+
+    <!-- Política de Privacidade (inicialmente escondida) -->
+    <div id="politica" style="display: none; margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9;">
+      <h3>Política de Privacidade</h3>
+      <p>Suas informações serão tratadas com confidencialidade e apenas utilizadas para fins de registro da ocorrência no sistema do Metrô de São Paulo.</p>
+      <p>Coletamos dados mínimos necessários, como tipo de ocorrência, linha do metrô e dados pessoais, conforme exigido pela LGPD.</p>
+      <p>Ao marcar a caixa de consentimento, você autoriza o uso das informações fornecidas para o processamento adequado da sua solicitação.</p>
+    </div>
+
 
     <button type="submit">Enviar Ocorrência</button>
     <button onclick="irParaApresentacao()">Voltar</button>
@@ -77,128 +86,136 @@
 
   <p id="mensagem"></p>
 
-<script>
-  function irParaApresentacao() {
-    window.location.href = "apresentacao.html";
-  }
-</script>
+  <script>
+    function irParaApresentacao() {
+      window.location.href = "apresentacao.html";
+    }
+  </script>
 
-<script>
-const estacoesPorLinha = {
-  Vermelha: 
-  ["Palmeiras–Barra Funda",
-  "Marechal Deodoro",
-  "Santa Cecília",
-  "República",
-  "Anhangabaú",
-  "Sé",
-  "Pedro II",
-  "Brás",
-  "Bresser–Mooca",
-  "Belém",
-  "Tatuapé",
-  "Carrão",
-  "Penha",
-  "Vila Matilde",
-  "Guilhermina–Esperança",
-  "Patriarca–Vila Ré",
-  "Artur Alvim",
-  "Corinthians–Itaquera"],
+  <script>
+    function mostrarOcultarPolitica() {
+      const politica = document.getElementById("politica");
+      politica.style.display = politica.style.display === "none" ? "block" : "none";
+    }
+  </script>
 
-  Azul: 
-  ["Tucuruvi",
-  "Parada Inglesa",
-  "Jardim São Paulo – Ayrton Senna",
-  "Santana",
-  "Carandiru",
-  "Portuguesa–Tietê",
-  "Armênia",
-  "Tiradentes",
-  "Luz",
-  "São Bento",
-  "Sé",
-  "Liberdade",
-  "São Joaquim",
-  "Vergueiro",
-  "Paraíso",
-  "Ana Rosa",
-  "Vila Mariana",
-  "Santa Cruz",
-  "Praça da Árvore",
-  "Saúde",
-  "São Judas",
-  "Conceição",
-  "Jabaquara"],
 
-  Amarela: 
-  ["Luz",
-  "República",
-  "Higienópolis–Mackenzie",
-  "Paulista",
-  "Oscar Freire",
-  "Fradique Coutinho",
-  "Faria Lima",
-  "Pinheiros",
-  "Butantã",
-  "São Paulo–Morumbi",
-  "Vila Sônia"],
+  <script>
+    const estacoesPorLinha = {
+      Vermelha: 
+      ["Palmeiras–Barra Funda",
+      "Marechal Deodoro",
+      "Santa Cecília",
+      "República",
+      "Anhangabaú",
+      "Sé",
+      "Pedro II",
+      "Brás",
+      "Bresser–Mooca",
+      "Belém",
+      "Tatuapé",
+      "Carrão",
+      "Penha",
+      "Vila Matilde",
+      "Guilhermina–Esperança",
+      "Patriarca–Vila Ré",
+      "Artur Alvim",
+      "Corinthians–Itaquera"],
 
-  Verde: 
-  ["Vila Madalena",
-  "Sumaré",
-  "Clínicas",
-  "Consolação",
-  "Trianon–Masp",
-  "Brigadeiro",
-  "Paraíso",
-  "Ana Rosa",
-  "Chácara Klabin",
-  "Santos–Imigrantes",
-  "Alto do Ipiranga",
-  "Sacomã",
-  "Tamanduateí",
-  "Vila Prudente"]
-};
+      Azul: 
+      ["Tucuruvi",
+      "Parada Inglesa",
+      "Jardim São Paulo – Ayrton Senna",
+      "Santana",
+      "Carandiru",
+      "Portuguesa–Tietê",
+      "Armênia",
+      "Tiradentes",
+      "Luz",
+      "São Bento",
+      "Sé",
+      "Liberdade",
+      "São Joaquim",
+      "Vergueiro",
+      "Paraíso",
+      "Ana Rosa",
+      "Vila Mariana",
+      "Santa Cruz",
+      "Praça da Árvore",
+      "Saúde",
+      "São Judas",
+      "Conceição",
+      "Jabaquara"],
 
-const linhaSelect = document.querySelector('select[name="linha_metro"]');
-const estacaoSelect = document.querySelector('select[name="estacao"]');
+      Amarela: 
+      ["Luz",
+      "República",
+      "Higienópolis–Mackenzie",
+      "Paulista",
+      "Oscar Freire",
+      "Fradique Coutinho",
+      "Faria Lima",
+      "Pinheiros",
+      "Butantã",
+      "São Paulo–Morumbi",
+      "Vila Sônia"],
 
-linhaSelect.addEventListener("change", function () {
-  const estacoes = estacoesPorLinha[this.value] || [];
-  estacaoSelect.innerHTML = '<option value="">Selecione</option>';
-  estacoes.forEach(estacao => {
-    const option = document.createElement("option");
-    option.value = estacao;
-    option.textContent = estacao;
-    estacaoSelect.appendChild(option);
-  });
-});
+      Verde: 
+      ["Vila Madalena",
+      "Sumaré",
+      "Clínicas",
+      "Consolação",
+      "Trianon–Masp",
+      "Brigadeiro",
+      "Paraíso",
+      "Ana Rosa",
+      "Chácara Klabin",
+      "Santos–Imigrantes",
+      "Alto do Ipiranga",
+      "Sacomã",
+      "Tamanduateí",
+      "Vila Prudente"]
+    };
 
-document.getElementById("form-ocorrencia").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const data = Object.fromEntries(new FormData(form).entries());
-  data.consentimento = form.consentimento.checked;
+    const linhaSelect = document.querySelector('select[name="linha_metro"]');
+    const estacaoSelect = document.querySelector('select[name="estacao"]');
 
-  const resposta = await fetch("http://localhost:3000/enviar", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
+    linhaSelect.addEventListener("change", function () {
+      const estacoes = estacoesPorLinha[this.value] || [];
+      estacaoSelect.innerHTML = '<option value="">Selecione</option>';
+      estacoes.forEach(estacao => {
+        const option = document.createElement("option");
+        option.value = estacao;
+        option.textContent = estacao;
+        estacaoSelect.appendChild(option);
+      });
+    });
 
-  const mensagem = document.getElementById("mensagem");
+    document.getElementById("form-ocorrencia").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.consentimento = form.consentimento.checked;
 
-  if (resposta.ok) {
-    mensagem.textContent = "Ocorrência registrada com sucesso!";
-    mensagem.style.color = "green";
-    form.reset();
-    estacaoSelect.innerHTML = '<option value="">Selecione</option>';
-  } else {
-    mensagem.textContent = "Erro ao registrar ocorrência.";
-    mensagem.style.color = "red";
-  }
-});
+      const resposta = await fetch("http://localhost:3000/enviar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
 
-</script>
+      const mensagem = document.getElementById("mensagem");
+
+      if (resposta.ok) {
+        mensagem.textContent = "Ocorrência registrada com sucesso!";
+        mensagem.style.color = "green";
+        form.reset();
+        estacaoSelect.innerHTML = '<option value="">Selecione</option>';
+      } else {
+        mensagem.textContent = "Erro ao registrar ocorrência.";
+        mensagem.style.color = "red";
+      }
+    });
+
+  </script>
 </body>
 </html>

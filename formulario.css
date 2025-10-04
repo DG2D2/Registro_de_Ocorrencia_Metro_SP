@@ -68,3 +68,16 @@ button:hover {
   margin-top: 20px;
 }
 
+.link-politica {
+  cursor: pointer;
+}
+
+.grifado {
+  text-decoration: underline;
+  font-weight: bold;
+  color: #00070b;
+}
+.grifado:hover {
+  color: #005fa3;
+}
+
