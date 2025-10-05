@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="formulario.css" />
 </head>
 <body>
-  <h2>Ocorrência de Delito no Metrô</h2>
-
+  
   <form id="form-ocorrencia">
+    <h2>Ocorrência de Delito no Metrô</h2>
+
     <label>Tipo de Ocorrência:
       <select name="tipo_ocorrencia" required>
         <option value="">Selecione</option>
@@ -28,9 +29,9 @@
     <label>Linha do Metrô:
       <select name="linha_metro" required>
         <option value="">Selecione</option>
-        <option value="Vermelha">Vermelha</option>
         <option value="Azul">Azul</option>
         <option value="Verde">Verde</option>
+        <option value="Vermelha">Vermelha</option>
         <option value="Amarela">Amarela</option>
       </select>
     </label><br><br>
@@ -47,12 +48,14 @@
         <option value="Masculino">Masculino</option>
         <option value="Feminino">Feminino</option>
         <option value="Outro">Outro</option>
+        <option value="Não Especificado">Não Especificado</option>
       </select>
     </label><br><br>
 
-    <label>Data de Nascimento:
-      <input type="date" name="data_nascimento" required />
+    <label>Idade:
+      <input type="number" name="idade" min="5" max="120" required />
     </label><br><br>
+
 
     <label>Data do Ocorrido:
       <input type="date" name="data_ocorrido" required />
@@ -73,12 +76,69 @@
 
     <!-- Política de Privacidade (inicialmente escondida) -->
     <div id="politica" style="display: none; margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9;">
-      <h3>Política de Privacidade</h3>
-      <p>Suas informações serão tratadas com confidencialidade e apenas utilizadas para fins de registro da ocorrência no sistema do Metrô de São Paulo.</p>
-      <p>Coletamos dados mínimos necessários, como tipo de ocorrência, linha do metrô e dados pessoais, conforme exigido pela LGPD.</p>
-      <p>Ao marcar a caixa de consentimento, você autoriza o uso das informações fornecidas para o processamento adequado da sua solicitação.</p>
-    </div>
+      <h3>Política de Privacidade – Coleta e análise de dados para fins acadêmicos</h3>
+      <p><strong>Última atualização:</strong> 04/10/2025 20:14:50</p>
 
+      <p>Esta Política de Privacidade tem como objetivo informar de forma clara e transparente como os seus dados pessoais serão coletados, utilizados, armazenados e protegidos ao preencher o formulário, desenvolvido para fins acadêmicos como: estudo e análise de incidentes no Metrô de São Paulo.</p>
+
+      <h4>1. Quem somos</h4>
+      <p>Somos um grupo de estudantes da matéria de Banco de Dados Avançados na Universidade Cidade de São Paulo (UNICID), e também os controladores responsáveis pelo tratamento dos dados coletados por meio deste formulário.</p>
+
+      <h4>2. Quais dados coletamos</h4>
+      <p>Ao preencher o formulário, poderemos coletar os seguintes dados pessoais:</p>
+      <ul>
+        <li>Data de nascimento</li>
+        <li>Gênero</li>
+      </ul>
+
+      <h4>3. Finalidade da coleta de dados</h4>
+      <p>Os dados coletados têm como objetivo:</p>
+      <ul>
+        <li>Realizar análise estatística e qualitativa sobre a experiência dos passageiros do Metrô de São Paulo</li>
+        <li>Compreender o perfil dos usuários</li>
+        <li>Subsidiar estudos acadêmicos, institucionais ou internos, conforme descrito neste projeto</li>
+      </ul>
+      <p>Não coletamos dados sensíveis ou excessivos, e não há finalidade comercial ou publicitária.</p>
+
+      <h4>4. Base legal para o tratamento de dados</h4>
+      <p>O tratamento dos dados se baseia nos seguintes fundamentos legais previstos na LGPD:</p>
+      <ul>
+        <li><strong>Consentimento do titular</strong> (Art. 7º, I) – o titular dos dados autoriza expressamente o uso das informações para os fins informados nesta Política.</li>
+        <li><strong>Realização de estudos por órgão de pesquisa</strong>, garantida, sempre que possível, a anonimização dos dados pessoais (Art. 7º, IV, e Art. 13).</li>
+      </ul>
+
+      <h4>5. Compartilhamento dos dados</h4>
+      <p>Os dados coletados não serão compartilhados com terceiros, exceto:</p>
+      <ul>
+        <li>Quando exigido por lei ou ordem judicial</li>
+        <li>Quando necessário para fins de auditoria acadêmica ou científica, com devida anonimização</li>
+      </ul>
+
+      <h4>6. Armazenamento e segurança dos dados</h4>
+      <p>Seus dados serão armazenados de forma segura, utilizando banco de dados com a devida segurança projetada, com acesso restrito às pessoas autorizadas envolvidas no projeto.</p>
+      <p>Os dados serão mantidos pelo período necessário para atingir os objetivos da pesquisa, e poderão ser excluídos ou anonimizados após esse prazo.</p>
+
+      <h4>7. Direitos do titular dos dados</h4>
+      <p>Nos termos da LGPD, você tem o direito de:</p>
+      <ul>
+        <li>Confirmar a existência de tratamento</li>
+        <li>Acessar seus dados</li>
+        <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
+        <li>Revogar o consentimento a qualquer momento</li>
+        <li>Solicitar a exclusão dos dados (quando aplicável)</li>
+      </ul>
+      <p>Para exercer qualquer um desses direitos, entre em contato com o responsável através do e-mail: <a href="mailto:contatoproj.bdavancado@gmail.com">contatoproj.bdavancado@gmail.com</a>.</p>
+
+      <h4>8. Consentimento</h4>
+      <p>Ao preencher este formulário, você declara estar ciente desta Política de Privacidade e concorda com o tratamento dos seus dados pessoais conforme as finalidades descritas.</p>
+
+      <h4>9. Alterações nesta Política</h4>
+      <p>Esta Política de Privacidade poderá ser atualizada a qualquer momento, visando adequações legais ou operacionais. Em caso de alterações significativas, você será informado.</p>
+
+      <p><strong>Dúvidas?</strong><br />
+      Se tiver qualquer dúvida sobre o uso dos seus dados, entre em contato conosco:<br />
+      E-mail: <a href="mailto:contatoproj.bdavancado@gmail.com">contatoproj.bdavancado@gmail.com</a></p>
+    </div>
 
     <button type="submit">Enviar Ocorrência</button>
     <button onclick="irParaApresentacao()">Voltar</button>
@@ -206,14 +266,22 @@
       const mensagem = document.getElementById("mensagem");
 
       if (resposta.ok) {
-        mensagem.textContent = "Ocorrência registrada com sucesso!";
-        mensagem.style.color = "green";
+        mensagem.textContent = "✅ Ocorrência registrada com sucesso. Agradecemos pela colaboração!";
+        mensagem.style.color = "#155724";
+        mensagem.style.backgroundColor = "#d4edda";
+        mensagem.style.border = "1px solid #c3e6cb";
+        mensagem.style.display = "block";
+
         form.reset();
         estacaoSelect.innerHTML = '<option value="">Selecione</option>';
       } else {
-        mensagem.textContent = "Erro ao registrar ocorrência.";
-        mensagem.style.color = "red";
+        mensagem.textContent = "❌ Erro ao registrar ocorrência. Tente novamente.";
+        mensagem.style.color = "#721c24";
+        mensagem.style.backgroundColor = "#f8d7da";
+        mensagem.style.border = "1px solid #f5c6cb";
+        mensagem.style.display = "block";
       }
+
     });
 
   </script>
