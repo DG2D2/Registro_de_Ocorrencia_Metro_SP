@@ -9,9 +9,9 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// 🔧 Substitua com suas credenciais
 const db = mysql.createConnection({
   host: "localhost",
+
   user: "root",
   password: "Adeveloperborn*",
   database: "metro_ocorrencias"
@@ -33,7 +33,7 @@ app.post("/enviar", async (req, res) => {
     linha_metro,
     estacao,
     genero,
-    data_nascimento,
+    idade,
     data_ocorrido,
     hora_ocorrido,
     descricao,
@@ -41,6 +41,19 @@ app.post("/enviar", async (req, res) => {
   } = req.body;
 
   try {
+    // 0. Buscar ID do artigo criminal
+    const [artigoResult] = await db.promise().query(
+      "SELECT id_artigo FROM ARTIGOS_CRIMINAIS WHERE nome_artigo = ?",
+      [tipo_ocorrencia]
+    );
+
+    if (artigoResult.length === 0) {
+      return res.status(400).send("Tipo de ocorrência inválido.");
+    }
+
+    const id_artigo = artigoResult[0].id_artigo;
+
+
     // 1. Verifica ou insere LOCAL
     const [localResult] = await db.promise().query(
       "SELECT id_local FROM LOCAL WHERE linha = ? AND estacao = ?",
@@ -55,21 +68,23 @@ app.post("/enviar", async (req, res) => {
         "INSERT INTO LOCAL (linha, estacao) VALUES (?, ?)",
         [linha_metro, estacao]
       );
-      id_local = insertLocal.insertId;
+      
+    id_local = insertLocal.insertId;
     }
 
     // 2. Insere OCORRENCIA
     const [insertOcorrencia] = await db.promise().query(
       `INSERT INTO OCORRENCIA 
-        (tipo_ocorrencia, data_ocorrido, hora_ocorrido, descricao, consentimento, id_local)
-       VALUES (?, ?, ?, ?, ?, ?)`,
+        (tipo_ocorrencia, data_ocorrido, hora_ocorrido, descricao, consentimento, id_local, id_artigo)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [
         tipo_ocorrencia,
         data_ocorrido,
         hora_ocorrido,
         descricao || null,
         consentimento ? 1 : 0,
-        id_local
+        id_local,
+        id_artigo
       ]
     );
 
@@ -77,9 +92,9 @@ app.post("/enviar", async (req, res) => {
 
     // 3. Insere PESSOA
     await db.promise().query(
-      `INSERT INTO PESSOA (genero, data_nascimento, id_ocorrencia)
+      `INSERT INTO PESSOA (genero, idade, id_ocorrencia)
        VALUES (?, ?, ?)`,
-      [genero, data_nascimento, id_ocorrencia]
+      [genero, idade, id_ocorrencia]
     );
 
     res.status(200).send("Ocorrência registrada.");
