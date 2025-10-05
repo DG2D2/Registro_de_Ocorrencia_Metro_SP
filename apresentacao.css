@@ -53,3 +53,10 @@ button:hover {
   margin-bottom: 30px;
   line-height: 1.5;
 }
+
+#icone_look {
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+  align-items: center;
+}
