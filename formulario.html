@@ -144,7 +144,7 @@
     <button onclick="irParaApresentacao()">Voltar</button>
   </form>
 
-  <p id="mensagem"></p>
+  <div id="mensagem" style="display: none;"></div>
 
   <script>
     function irParaApresentacao() {
@@ -273,6 +273,10 @@
         mensagem.style.border = "1px solid #c3e6cb";
         mensagem.style.display = "block";
 
+        setTimeout(() => {
+          mensagem.style.display = "none";
+        }, 5000);
+
         form.reset();
         estacaoSelect.innerHTML = '<option value="">Selecione</option>';
       } else {
@@ -281,6 +285,10 @@
         mensagem.style.backgroundColor = "#f8d7da";
         mensagem.style.border = "1px solid #f5c6cb";
         mensagem.style.display = "block";
+        
+        setTimeout(() => {
+          mensagem.style.display = "none";
+        }, 5000);
       }
 
     });
