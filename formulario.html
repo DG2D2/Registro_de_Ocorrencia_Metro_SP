@@ -15,14 +15,14 @@
     <label>Tipo de Ocorrência:
       <select name="tipo_ocorrencia" required>
         <option value="">Selecione</option>
-        <option value="furto">Furto (Art. 155 do Código Penal)</option>
-        <option value="assédio sexual">Assédio Sexual (Art. 216-A do Código Penal)</option>
-        <option value="lesão corporal">Lesão Corporal (Art. 129 do Código Penal)</option>
-        <option value="ato de vandalismo">Ato de Vandalismo (Art. 163 do Código Penal)</option>
-        <option value="conduta indecente ou atos obscenos">Conduta Indecente ou Atos Obscenos (Art. 233 do Código Penal)</option>
-        <option value="tráfico de drogas">Tráfico de Drogas (Art. 33 da Lei 11.343/2006 - Lei de Drogas)</option>
-        <option value="dano">Dano (Art. 163 do Código Penal)</option>
-        <option value="outra">Outra</option>
+        <option value="Furto (Art. 155 do Código Penal)">Furto (Art. 155 do Código Penal)</option>
+        <option value="Assédio Sexual (Art. 216-A do Código Penal)">Assédio Sexual (Art. 216-A do Código Penal)</option>
+        <option value="Lesão Corporal (Art. 129 do Código Penal)">Lesão Corporal (Art. 129 do Código Penal)</option>
+        <option value="Ato de Vandalismo (Art. 163 do Código Penal)">Ato de Vandalismo (Art. 163 do Código Penal)</option>
+        <option value="Conduta Indecente ou Atos Obscenos (Art. 233 do Código Penal)">Conduta Indecente ou Atos Obscenos (Art. 233 do Código Penal)</option>
+        <option value="Tráfico de Drogas (Art. 33 da Lei 11.343/2006 - Lei de Drogas)">Tráfico de Drogas (Art. 33 da Lei 11.343/2006 - Lei de Drogas)</option>
+        <option value="Dano (Art. 163 do Código Penal)">Dano (Art. 163 do Código Penal)</option>
+        <option value="Outra">Outra</option>
       </select>
     </label><br><br>
 
@@ -253,6 +253,7 @@
 
     document.getElementById("form-ocorrencia").addEventListener("submit", async function(e) {
       e.preventDefault();
+      console.log("Formulário enviado");
       const form = e.target;
       const data = Object.fromEntries(new FormData(form).entries());
       data.consentimento = form.consentimento.checked;

@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 
 const db = mysql.createConnection({
   host: "localhost",
-
   user: "root",
   password: "Adeveloperborn*",
   database: "metro_ocorrencias"
@@ -68,7 +67,7 @@ app.post("/enviar", async (req, res) => {
         "INSERT INTO LOCAL (linha, estacao) VALUES (?, ?)",
         [linha_metro, estacao]
       );
-      
+
     id_local = insertLocal.insertId;
     }
 
@@ -102,4 +101,8 @@ app.post("/enviar", async (req, res) => {
     console.error("Erro ao registrar ocorrência:", err);
     res.status(500).send("Erro interno no servidor.");
   }
+});
+
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
