@@ -24,6 +24,13 @@ form {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.form-description {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
 label {
   display: block;
   margin-bottom: 10px;

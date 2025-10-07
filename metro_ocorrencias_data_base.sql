@@ -15,7 +15,7 @@ CREATE TABLE LOCAL (
 );
 
 -- Tabela de ocorrências
-CREATE TABLE OCORRENCIA (
+CREATE TABLE OCORRENCIA ( 
     id_ocorrencia INT AUTO_INCREMENT PRIMARY KEY,
     tipo_ocorrencia VARCHAR(100) NOT NULL,
     data_ocorrido DATE NOT NULL,
