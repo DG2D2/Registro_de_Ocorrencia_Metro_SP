@@ -12,7 +12,10 @@
   <form id="form-ocorrencia">
     <h2>Ocorrência de Delito no Metrô</h2>
 
-    <label>Tipo de Ocorrência:
+    <label>Tipo de Ocorrência:<br>
+      <FormDescription class="form-description">
+        Selecione o tipo de delito ocorrido
+      </FormDescription>
       <select name="tipo_ocorrencia" required>
         <option value="">Selecione</option>
         <option value="Furto (Art. 155 do Código Penal)">Furto (Art. 155 do Código Penal)</option>
@@ -28,7 +31,10 @@
       </select>
     </label><br><br>
 
-    <label>Linha do Metrô:
+    <label>Linha do Metrô:<br>
+      <FormDescription class="form-description">
+        Escolha a linha onde o incidente ocorreu
+      </FormDescription>
       <select name="linha_metro" required>
         <option value="">Selecione</option>
         <option value="Azul">Azul</option>
@@ -38,7 +44,10 @@
       </select>
     </label><br><br>
 
-    <label>Estação:
+    <label>Estação:<br>
+      <FormDescription class="form-description">
+        Escolha a estação onde o incidente ocorreu
+      </FormDescription>
       <select name="estacao" required>
         <option value="">Selecione</option>
       </select>
