@@ -1,19 +1,34 @@
+// index.js - adjusted to use ENV variables and serve frontend
+require('dotenv').config();
 const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
+// Serve static frontend files from /public
+app.use(express.static(path.join(__dirname, "public")));
+
+// Route for homepage (apresentacao.html)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "apresentacao.html"));
+});
+
+// Use environment variables for DB connection (Railway will provide these)
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "Adeveloperborn*",
-  database: "metro_ocorrencias"
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "metro_ocorrencias",
+  // Railway / managed MySQL may require SSL settings; mysql2 will handle typical URIs.
+  // If you need to pass SSL options, uncomment and configure the following:
+  // ssl: { rejectUnauthorized: true }
 });
 
 // Conexão com o banco
@@ -55,7 +70,7 @@ app.post("/enviar", async (req, res) => {
 
     // 1. Verifica ou insere LOCAL
     const [localResult] = await db.promise().query(
-      "SELECT id_local FROM LOCAL WHERE linha = ? AND estacao = ?",
+      "SELECT id_local FROM `LOCAL` WHERE linha = ? AND estacao = ?",
       [linha_metro, estacao]
     );
 
@@ -64,11 +79,11 @@ app.post("/enviar", async (req, res) => {
       id_local = localResult[0].id_local;
     } else {
       const [insertLocal] = await db.promise().query(
-        "INSERT INTO LOCAL (linha, estacao) VALUES (?, ?)",
+        "INSERT INTO `LOCAL` (linha, estacao) VALUES (?, ?)",
         [linha_metro, estacao]
       );
 
-    id_local = insertLocal.insertId;
+      id_local = insertLocal.insertId;
     }
 
     // 2. Insere OCORRENCIA
