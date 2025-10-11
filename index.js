@@ -26,7 +26,7 @@ const db = mysql.createConnection({
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "metro_ocorrencias",
   port: process.env.DB_PORT || 3306,
-  ssl: { rejectUnauthorized: true }
+  ssl: { rejectUnauthorized: false }
 });
 
 
