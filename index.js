@@ -1,14 +1,14 @@
+import mysql from "mysql2";
 import dotenv from "dotenv";
-
-dotenv.config();
 
 // index.js - adjusted to use ENV variables and serve frontend
 require('dotenv').config();
 const express = require("express");
-const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const path = require("path");
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
