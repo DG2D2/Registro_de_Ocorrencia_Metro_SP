@@ -1,12 +1,14 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
+import express from "express";
+import bodyParser from "body-parser";
+import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url"; // 👈 para corrigir o __dirname
 
-// index.js - adjusted to use ENV variables and serve frontend
-require('dotenv').config();
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const path = require("path");
+// Corrige __dirname em ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -35,16 +37,14 @@ const db = mysql.createConnection({
   ssl: { rejectUnauthorized: true }
 });
 
-// Conexão com o banco
-db.connect(err => {
+db.connect((err) => {
   if (err) {
-    console.error("Erro ao conectar no banco:", err);
+    console.error("❌ Erro ao conectar no banco:", err);
   } else {
-    console.log("Conectado ao MySQL.");
+    console.log("✅ Conectado ao MySQL com sucesso!");
   }
 });
 
-// Rota de envio de ocorrência
 app.post("/enviar", async (req, res) => {
   const {
     tipo_ocorrencia,
@@ -59,7 +59,6 @@ app.post("/enviar", async (req, res) => {
   } = req.body;
 
   try {
-    // 0. Buscar ID do artigo criminal
     const [artigoResult] = await db.promise().query(
       "SELECT id_artigo FROM ARTIGOS_CRIMINAIS WHERE nome_artigo = ?",
       [tipo_ocorrencia]
@@ -71,8 +70,6 @@ app.post("/enviar", async (req, res) => {
 
     const id_artigo = artigoResult[0].id_artigo;
 
-
-    // 1. Verifica ou insere LOCAL
     const [localResult] = await db.promise().query(
       "SELECT id_local FROM `LOCAL` WHERE linha = ? AND estacao = ?",
       [linha_metro, estacao]
@@ -86,11 +83,9 @@ app.post("/enviar", async (req, res) => {
         "INSERT INTO `LOCAL` (linha, estacao) VALUES (?, ?)",
         [linha_metro, estacao]
       );
-
       id_local = insertLocal.insertId;
     }
 
-    // 2. Insere OCORRENCIA
     const [insertOcorrencia] = await db.promise().query(
       `INSERT INTO OCORRENCIA 
         (tipo_ocorrencia, data_ocorrido, hora_ocorrido, descricao, consentimento, id_local, id_artigo)
@@ -108,7 +103,6 @@ app.post("/enviar", async (req, res) => {
 
     const id_ocorrencia = insertOcorrencia.insertId;
 
-    // 3. Insere PESSOA
     await db.promise().query(
       `INSERT INTO PESSOA (genero, idade, id_ocorrencia)
        VALUES (?, ?, ?)`,
@@ -123,5 +117,5 @@ app.post("/enviar", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+  console.log(`🚀 Servidor rodando em http://localhost:${port}`);
 });
