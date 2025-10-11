@@ -20,7 +20,12 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "apresentacao.html"));
 });
 
-const db = mysql.createConnection(process.env.DATABASE_URL);
+const db = mysql.createConnection({
+  host: process.env.DB_HOST || "localhost",
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "metro_ocorrencias",
+});
 
 // Conexão com o banco
 db.connect(err => {
