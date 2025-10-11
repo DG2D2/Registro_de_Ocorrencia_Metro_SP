@@ -21,11 +21,14 @@ app.get("/", (req, res) => {
 });
 
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || "localhost",
+  host: process.env.DB_HOST || "mysql.railway.internal",
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "metro_ocorrencias",
+  port: process.env.DB_PORT || 3306,
+  ssl: { rejectUnauthorized: true }
 });
+
 
 // Conexão com o banco
 db.connect(err => {
