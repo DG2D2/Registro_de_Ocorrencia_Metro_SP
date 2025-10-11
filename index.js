@@ -1,3 +1,7 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
 // index.js - adjusted to use ENV variables and serve frontend
 require('dotenv').config();
 const express = require("express");
@@ -20,15 +24,16 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "apresentacao.html"));
 });
 
-const db = mysql.createConnection({
-  host: process.env.DB_HOST || "mysql.railway.internal",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "metro_ocorrencias",
-  port: process.env.DB_PORT || 3306,
-  ssl: { rejectUnauthorized: false }
-});
+console.log("Senha recebida pelo ambiente:", process.env.DB_PASSWORD ? "OK" : "VAZIA");
 
+const db = mysql.createConnection({
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT || 3306,
+  ssl: { rejectUnauthorized: true }
+});
 
 // Conexão com o banco
 db.connect(err => {
