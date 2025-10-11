@@ -20,16 +20,7 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "apresentacao.html"));
 });
 
-// Use environment variables for DB connection (Railway will provide these)
-const db = mysql.createConnection({
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "",
-  database: process.env.DB_NAME || "metro_ocorrencias",
-  // Railway / managed MySQL may require SSL settings; mysql2 will handle typical URIs.
-  // If you need to pass SSL options, uncomment and configure the following:
-  // ssl: { rejectUnauthorized: true }
-});
+const db = mysql.createConnection(process.env.DATABASE_URL);
 
 // Conexão com o banco
 db.connect(err => {
