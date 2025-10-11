@@ -1,50 +1,31 @@
-import mysql from "mysql2";
-import dotenv from "dotenv";
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url"; // 👈 para corrigir o __dirname
-
-// Corrige __dirname em ES Modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config();
+const express = require("express");
+const mysql = require("mysql2");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// Serve static frontend files from /public
-app.use(express.static(path.join(__dirname, "public")));
-
-// Route for homepage (apresentacao.html)
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "apresentacao.html"));
-});
-
-console.log("Senha recebida pelo ambiente:", process.env.DB_PASSWORD ? "OK" : "VAZIA");
-
 const db = mysql.createConnection({
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
-  port: process.env.MYSQLPORT || 3306,
-  ssl: { rejectUnauthorized: false }
+  host: "localhost",
+  user: "root",
+  password: "Adeveloperborn*",
+  database: "metro_ocorrencias"
 });
 
-db.connect((err) => {
+// Conexão com o banco
+db.connect(err => {
   if (err) {
-    console.error("❌ Erro ao conectar no banco:", err);
+    console.error("Erro ao conectar no banco:", err);
   } else {
-    console.log("✅ Conectado ao MySQL com sucesso!");
+    console.log("Conectado ao MySQL.");
   }
 });
 
+// Rota de envio de ocorrência
 app.post("/enviar", async (req, res) => {
   const {
     tipo_ocorrencia,
@@ -59,6 +40,7 @@ app.post("/enviar", async (req, res) => {
   } = req.body;
 
   try {
+    // 0. Buscar ID do artigo criminal
     const [artigoResult] = await db.promise().query(
       "SELECT id_artigo FROM ARTIGOS_CRIMINAIS WHERE nome_artigo = ?",
       [tipo_ocorrencia]
@@ -70,8 +52,10 @@ app.post("/enviar", async (req, res) => {
 
     const id_artigo = artigoResult[0].id_artigo;
 
+
+    // 1. Verifica ou insere LOCAL
     const [localResult] = await db.promise().query(
-      "SELECT id_local FROM `LOCAL` WHERE linha = ? AND estacao = ?",
+      "SELECT id_local FROM LOCAL WHERE linha = ? AND estacao = ?",
       [linha_metro, estacao]
     );
 
@@ -80,12 +64,14 @@ app.post("/enviar", async (req, res) => {
       id_local = localResult[0].id_local;
     } else {
       const [insertLocal] = await db.promise().query(
-        "INSERT INTO `LOCAL` (linha, estacao) VALUES (?, ?)",
+        "INSERT INTO LOCAL (linha, estacao) VALUES (?, ?)",
         [linha_metro, estacao]
       );
-      id_local = insertLocal.insertId;
+
+    id_local = insertLocal.insertId;
     }
 
+    // 2. Insere OCORRENCIA
     const [insertOcorrencia] = await db.promise().query(
       `INSERT INTO OCORRENCIA 
         (tipo_ocorrencia, data_ocorrido, hora_ocorrido, descricao, consentimento, id_local, id_artigo)
@@ -103,6 +89,7 @@ app.post("/enviar", async (req, res) => {
 
     const id_ocorrencia = insertOcorrencia.insertId;
 
+    // 3. Insere PESSOA
     await db.promise().query(
       `INSERT INTO PESSOA (genero, idade, id_ocorrencia)
        VALUES (?, ?, ?)`,
@@ -117,5 +104,5 @@ app.post("/enviar", async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`🚀 Servidor rodando em http://localhost:${port}`);
+  console.log(`Servidor rodando em http://localhost:${port}`);
 });
