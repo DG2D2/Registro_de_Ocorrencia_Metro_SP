@@ -13,9 +13,9 @@
     <h2>Ocorrência de Delito no Metrô</h2>
 
     <label>Tipo de Ocorrência:<br>
-      <FormDescription class="form-description">
+      <span class="form-description">
         Selecione o tipo de delito ocorrido
-      </FormDescription>
+      </span>
       <select name="tipo_ocorrencia" required>
         <option value="">Selecione</option>
         <option value="Furto (Art. 155 do Código Penal)">Furto (Art. 155 do Código Penal)</option>
@@ -32,10 +32,10 @@
     </label><br><br>
 
     <label>Linha do Metrô:<br>
-      <FormDescription class="form-description">
+      <span class="form-description">
         Escolha a linha onde o incidente ocorreu
-      </FormDescription>
-      <select name="linha_metro" required>
+      </span>
+      <select name="linha_metro" id="linha_metro" required>
         <option value="">Selecione</option>
         <option value="Azul">Azul</option>
         <option value="Verde">Verde</option>
@@ -45,18 +45,18 @@
     </label><br><br>
 
     <label>Estação:<br>
-      <FormDescription class="form-description">
+      <span class="form-description">
         Escolha a estação onde o incidente ocorreu
-      </FormDescription>
-      <select name="estacao" required>
+      </span>
+      <select name="estacao" id="estacao" required>
         <option value="">Selecione</option>
       </select>
     </label><br><br>
 
     <label>Gênero da Vítima:<br>
-      <FormDescription class="form-description">
+      <span class="form-description">
         Informe o gênero de quem sofreu a ação
-      </FormDescription>
+      </span>
       <select name="genero" required>
         <option value="">Selecione</option>
         <option value="Masculino">Masculino</option>
@@ -69,7 +69,6 @@
     <label>Idade da Vítima:
       <input type="number" name="idade" min="5" max="120" required />
     </label><br><br>
-
 
     <label>Data do Ocorrido:
       <input type="date" name="data_ocorrido" required />
@@ -91,222 +90,75 @@
     <!-- Política de Privacidade (inicialmente escondida) -->
     <div id="politica" style="display: none; margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9;">
       <h3>Política de Privacidade – Coleta e análise de dados para fins acadêmicos</h3>
-      <p><strong>Última atualização:</strong> 04/10/2025 20:14:50</p>
-
-      <p>Esta Política de Privacidade tem como objetivo informar de forma clara e transparente como os seus dados pessoais serão coletados, utilizados, armazenados e protegidos ao preencher o formulário, desenvolvido para fins acadêmicos como: estudo e análise de incidentes no Metrô de São Paulo.</p>
-
-      <h4>1. Quem somos</h4>
-      <p>Somos um grupo de estudantes da matéria de Banco de Dados Avançados na Universidade Cidade de São Paulo (UNICID), e também os controladores responsáveis pelo tratamento dos dados coletados por meio deste formulário.</p>
-
-      <h4>2. Quais dados coletamos</h4>
-      <p>Ao preencher o formulário, poderemos coletar os seguintes dados pessoais:</p>
-      <ul>
-        <li>Data de nascimento</li>
-        <li>Gênero</li>
-      </ul>
-
-      <h4>3. Finalidade da coleta de dados</h4>
-      <p>Os dados coletados têm como objetivo:</p>
-      <ul>
-        <li>Realizar análise estatística e qualitativa sobre a experiência dos passageiros do Metrô de São Paulo</li>
-        <li>Compreender o perfil dos usuários</li>
-        <li>Subsidiar estudos acadêmicos, institucionais ou internos, conforme descrito neste projeto</li>
-      </ul>
-      <p>Não coletamos dados sensíveis ou excessivos, e não há finalidade comercial ou publicitária.</p>
-
-      <h4>4. Base legal para o tratamento de dados</h4>
-      <p>O tratamento dos dados se baseia nos seguintes fundamentos legais previstos na LGPD:</p>
-      <ul>
-        <li><strong>Consentimento do titular</strong> (Art. 7º, I) – o titular dos dados autoriza expressamente o uso das informações para os fins informados nesta Política.</li>
-        <li><strong>Realização de estudos por órgão de pesquisa</strong>, garantida, sempre que possível, a anonimização dos dados pessoais (Art. 7º, IV, e Art. 13).</li>
-      </ul>
-
-      <h4>5. Compartilhamento dos dados</h4>
-      <p>Os dados coletados não serão compartilhados com terceiros, exceto:</p>
-      <ul>
-        <li>Quando exigido por lei ou ordem judicial</li>
-        <li>Quando necessário para fins de auditoria acadêmica ou científica, com devida anonimização</li>
-      </ul>
-
-      <h4>6. Armazenamento e segurança dos dados</h4>
-      <p>Seus dados serão armazenados de forma segura, utilizando banco de dados com a devida segurança projetada, com acesso restrito às pessoas autorizadas envolvidas no projeto.</p>
-      <p>Os dados serão mantidos pelo período necessário para atingir os objetivos da pesquisa, e poderão ser excluídos ou anonimizados após esse prazo.</p>
-
-      <h4>7. Direitos do titular dos dados</h4>
-      <p>Nos termos da LGPD, você tem o direito de:</p>
-      <ul>
-        <li>Confirmar a existência de tratamento</li>
-        <li>Acessar seus dados</li>
-        <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
-        <li>Revogar o consentimento a qualquer momento</li>
-        <li>Solicitar a exclusão dos dados (quando aplicável)</li>
-      </ul>
-      <p>Para exercer qualquer um desses direitos, entre em contato com o responsável através do e-mail: <a href="mailto:contatoproj.bdavancado@gmail.com">contatoproj.bdavancado@gmail.com</a>.</p>
-
-      <h4>8. Consentimento</h4>
-      <p>Ao preencher este formulário, você declara estar ciente desta Política de Privacidade e concorda com o tratamento dos seus dados pessoais conforme as finalidades descritas.</p>
-
-      <h4>9. Alterações nesta Política</h4>
-      <p>Esta Política de Privacidade poderá ser atualizada a qualquer momento, visando adequações legais ou operacionais. Em caso de alterações significativas, você será informado.</p>
-
-      <p><strong>Dúvidas?</strong><br />
-      Se tiver qualquer dúvida sobre o uso dos seus dados, entre em contato conosco:<br />
-      E-mail: <a href="mailto:contatoproj.bdavancado@gmail.com">contatoproj.bdavancado@gmail.com</a></p>
+      <p><strong>Última atualização:</strong> 14/10/2025</p>
+      <p>Esta Política de Privacidade tem como objetivo informar de forma clara e transparente como os seus dados pessoais serão coletados, utilizados, armazenados e protegidos ao preencher o formulário, desenvolvido para fins acadêmicos.</p>
     </div>
 
     <button type="submit">Enviar Ocorrência</button>
-    <button onclick="irParaApresentacao()">Voltar</button>
+    <button type="button" onclick="irParaApresentacao()">Voltar</button>
   </form>
 
   <div id="mensagem" style="display: none;"></div>
 
   <script>
+    // Voltar para a página inicial
     function irParaApresentacao() {
       window.location.href = "apresentacao.html";
     }
-  </script>
 
-  <script>
+    // Mostrar / esconder política de privacidade
     function mostrarOcultarPolitica() {
       const politica = document.getElementById("politica");
       politica.style.display = politica.style.display === "none" ? "block" : "none";
     }
-  </script>
 
-
-  <script>
+    // Lista de estações por linha
     const estacoesPorLinha = {
-      Vermelha: 
-      ["Palmeiras–Barra Funda",
-      "Marechal Deodoro",
-      "Santa Cecília",
-      "República",
-      "Anhangabaú",
-      "Sé",
-      "Pedro II",
-      "Brás",
-      "Bresser–Mooca",
-      "Belém",
-      "Tatuapé",
-      "Carrão",
-      "Penha",
-      "Vila Matilde",
-      "Guilhermina–Esperança",
-      "Patriarca–Vila Ré",
-      "Artur Alvim",
-      "Corinthians–Itaquera"],
-
-      Azul: 
-      ["Tucuruvi",
-      "Parada Inglesa",
-      "Jardim São Paulo – Ayrton Senna",
-      "Santana",
-      "Carandiru",
-      "Portuguesa–Tietê",
-      "Armênia",
-      "Tiradentes",
-      "Luz",
-      "São Bento",
-      "Sé",
-      "Liberdade",
-      "São Joaquim",
-      "Vergueiro",
-      "Paraíso",
-      "Ana Rosa",
-      "Vila Mariana",
-      "Santa Cruz",
-      "Praça da Árvore",
-      "Saúde",
-      "São Judas",
-      "Conceição",
-      "Jabaquara"],
-
-      Amarela: 
-      ["Luz",
-      "República",
-      "Higienópolis–Mackenzie",
-      "Paulista",
-      "Oscar Freire",
-      "Fradique Coutinho",
-      "Faria Lima",
-      "Pinheiros",
-      "Butantã",
-      "São Paulo–Morumbi",
-      "Vila Sônia"],
-
-      Verde: 
-      ["Vila Madalena",
-      "Sumaré",
-      "Clínicas",
-      "Consolação",
-      "Trianon–Masp",
-      "Brigadeiro",
-      "Paraíso",
-      "Ana Rosa",
-      "Chácara Klabin",
-      "Santos–Imigrantes",
-      "Alto do Ipiranga",
-      "Sacomã",
-      "Tamanduateí",
-      "Vila Prudente"]
+      Vermelha: ["Palmeiras–Barra Funda","Marechal Deodoro","Santa Cecília","República","Anhangabaú","Sé","Pedro II","Brás","Bresser–Mooca","Belém","Tatuapé","Carrão","Penha","Vila Matilde","Guilhermina–Esperança","Patriarca–Vila Ré","Artur Alvim","Corinthians–Itaquera"],
+      Azul: ["Tucuruvi","Parada Inglesa","Jardim São Paulo – Ayrton Senna","Santana","Carandiru","Portuguesa–Tietê","Armênia","Tiradentes","Luz","São Bento","Sé","Liberdade","São Joaquim","Vergueiro","Paraíso","Ana Rosa","Vila Mariana","Santa Cruz","Praça da Árvore","Saúde","São Judas","Conceição","Jabaquara"],
+      Verde: ["Vila Prudente","Tamanduateí","Sacomã","Alto do Ipiranga","Santos–Imigrantes","Chácara Klabin","Ana Rosa","Paraíso","Brigadeiro","Trianon–Masp","Consolação","Clínicas","Sumáré","Vila Madalena"],
+      Amarela: ["Luz","República","Higienópolis–Mackenzie","Paulista","Pinheiros","Faria Lima","Fradique Coutinho","Oscar Freire","São Paulo–Morumbi","Vila Sônia"]
     };
 
-    const linhaSelect = document.querySelector('select[name="linha_metro"]');
-    const estacaoSelect = document.querySelector('select[name="estacao"]');
-
-    linhaSelect.addEventListener("change", function () {
-      const estacoes = estacoesPorLinha[this.value] || [];
-      estacaoSelect.innerHTML = '<option value="">Selecione</option>';
-      estacoes.forEach(estacao => {
-        const option = document.createElement("option");
-        option.value = estacao;
-        option.textContent = estacao;
-        estacaoSelect.appendChild(option);
-      });
-    });
-
-    document.getElementById("form-ocorrencia").addEventListener("submit", async function(e) {
-      e.preventDefault();
-      console.log("Formulário enviado");
-      const form = e.target;
-      const data = Object.fromEntries(new FormData(form).entries());
-      data.consentimento = form.consentimento.checked;
-
-      const resposta = await fetch("http://localhost:3000/enviar", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-      });
-
-      const mensagem = document.getElementById("mensagem");
-
-      if (resposta.ok) {
-        mensagem.textContent = "✅ Ocorrência registrada com sucesso. Agradecemos pela colaboração!";
-        mensagem.style.color = "#155724";
-        mensagem.style.backgroundColor = "#d4edda";
-        mensagem.style.border = "1px solid #c3e6cb";
-        mensagem.style.display = "block";
-
-        setTimeout(() => {
-          mensagem.style.display = "none";
-        }, 5000);
-
-        form.reset();
-        estacaoSelect.innerHTML = '<option value="">Selecione</option>';
-      } else {
-        mensagem.textContent = "❌ Erro ao registrar ocorrência. Tente novamente.";
-        mensagem.style.color = "#721c24";
-        mensagem.style.backgroundColor = "#f8d7da";
-        mensagem.style.border = "1px solid #f5c6cb";
-        mensagem.style.display = "block";
-        
-        setTimeout(() => {
-          mensagem.style.display = "none";
-        }, 5000);
+    // Atualiza a lista de estações conforme a linha selecionada
+    document.getElementById("linha_metro").addEventListener("change", function() {
+      const linha = this.value;
+      const estacaoSelect = document.getElementById("estacao");
+      estacaoSelect.innerHTML = "<option value=''>Selecione</option>";
+      if (estacoesPorLinha[linha]) {
+        estacoesPorLinha[linha].forEach(est => {
+          const opt = document.createElement("option");
+          opt.value = est;
+          opt.textContent = est;
+          estacaoSelect.appendChild(opt);
+        });
       }
-
     });
 
+    // Envio do formulário via Fetch API
+    const form = document.getElementById("form-ocorrencia");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      data.consentimento = formData.get("consentimento") ? true : false;
+
+      try {
+        const response = await fetch("/enviar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        const message = await response.text();
+        alert(message);
+        form.reset();
+      } catch (error) {
+        alert("Erro ao enviar ocorrência. Tente novamente.");
+        console.error(error);
+      }
+    });
   </script>
 </body>
 </html>
