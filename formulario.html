@@ -144,11 +144,17 @@
       const data = Object.fromEntries(formData.entries());
       data.consentimento = formData.get("consentimento") ? true : false;
 
+      // Detecta automaticamente o ambiente (local ou Railway)
+      const backendURL =
+        window.location.hostname === "localhost"
+          ? "http://localhost:3000/enviar"
+          : "https://registrodeocorrenciametrosp-production.up.railway.app/enviar";
+
       try {
-        const response = await fetch("/enviar", {
+        const response = await fetch(backendURL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
 
         const message = await response.text();
